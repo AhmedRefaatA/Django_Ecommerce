@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import  { Button, Icon, Image, Item, Label, Container, Dimmer, Loader, Segment, Message } from 'semantic-ui-react';
+import  { Button, Icon, Item, Label, Container, Dimmer, Loader, Segment, Message } from 'semantic-ui-react';
 import axios from 'axios';
 import { productList } from "./constant";
+import { Link } from 'react-router-dom';
 
 
 
@@ -56,7 +57,9 @@ class Home extends Component{
                             <Item>
                                 <Item.Image src={item.image} />
                                 <Item.Content>
-                                    <Item.Header as='a'>{item.title}</Item.Header>
+                                    <Link to={`product/${item.id}`}>
+                                        <Item.Header as='a'>{item.title}</Item.Header>
+                                    </Link>
                                     <Item.Meta>
                                         <span className='cinema'>${item.discount_price}</span>
                                     </Item.Meta>

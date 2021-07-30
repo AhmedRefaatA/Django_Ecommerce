@@ -47,7 +47,7 @@ class Variation(models.Model):
 class ItemVariation(models.Model):
     variation = models.ForeignKey('Variation', on_delete=models.CASCADE)
     value = models.CharField(max_length=200)
-    attachment = models.ImageField(upload_to="static/img")
+    attachment = models.ImageField(upload_to="static/img", blank=True, null=True)
 
     class Meta:
         unique_together = (
@@ -63,6 +63,7 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1)
+    item_variation = models.ManyToManyField(ItemVariation)
 
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
